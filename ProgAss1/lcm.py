@@ -7,7 +7,7 @@ def gcd(a, b):
     return gcd(b,a%b)
 
 def lcm(a, b):
-    return a*b/gcd(a,b)
+    return int(a*b/gcd(a,b))
 
 if __name__ == '__main__':
     input = sys.stdin.read()
