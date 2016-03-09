@@ -15,7 +15,7 @@ def get_fibonaccihuge(n, m):
         if x > n:
             break
     del a[-2:]
-    return b[n % y]
+    return b[n % m]
 
 if __name__ == '__main__':
     input = sys.stdin.read();
