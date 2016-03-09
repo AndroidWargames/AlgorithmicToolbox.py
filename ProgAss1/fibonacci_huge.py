@@ -6,16 +6,15 @@ def get_fibonaccihuge(n, m):
     # standard output
     if n < 2:
         return a[n]
-    # make a list of modulos
-    for i in range(2,10000):
-        a.append(a[i-2]+a[i-1])
-    b = [x % m for x in a]
-    # test for repeat cycles
-    y = -1
-    for i in range(2,9999):
-        if b[i:i+2]==[0,1]:
-            y = i
+    x = 0
+    while True:
+        x = x+1
+        a.append(sum(a[-2:]))
+        if a[-2:] == [0,1]:
             break
+        if x > n:
+            break
+    del a[-2:]
     return b[n % y]
 
 if __name__ == '__main__':
