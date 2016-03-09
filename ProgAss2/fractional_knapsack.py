@@ -7,15 +7,13 @@ def get_optimal_value(capacity, weights, values):
     #sort dat
     for i in range(len(weigths)):
         vbw[i] = values[i]/weights[i]
-    weights = [weights for (vbw,weights) in sorted(zip(vbw,weights))]
-    values  = [values for (vbw,values) in sorted(zip(vbw,values))]
-    while capacity > 0 and len(vbw) > 0:
-        m = min(capacity,weights[0])
+    outs = zip(vbw,weights,values)
+    outs.sort(key=lambda reverse=True tup: tup[1])
+    while capacity > 0 and len(outs) > 0:
+        m = min(capacity,outs[0][1])
         capacity -= m
-        value += m* values[0]
-        del values[0]
-        del weights[0]
-        del vbw[0]
+        value += m* outs[0][2]
+        del outs[0]
     return value
 
 
