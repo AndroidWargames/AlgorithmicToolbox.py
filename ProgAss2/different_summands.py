@@ -1,16 +1,18 @@
 # Uses python3
 import sys
+import math
 
 def optimal_summands(n):
     if n <= 2:
         return [n]
-    i = 0
-    sum = 0
-    while (n-sum)>(i+1)*2:
-        i += 1
-        sum += i
-    out = list(range(1,i+1))
-    out.append(n-sum)
+    # since this pattern optimizes using triangular numbers,
+    # we can simply find the i-1th triangular number that
+    # sums to n. Then we truncate it, and then the last number
+    # will be the difference between the sum of the previous i-1
+    # numbers our input, n.
+    i = int(math.sqrt(2*n+1)-1)
+    out = list(range(1,i))
+    out.append(n-sum(out))
     return out
     
 
