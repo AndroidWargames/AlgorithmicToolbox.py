@@ -14,10 +14,7 @@ def get_fibonaccihuge(n, m):
             break
         if x > n:
             break
-
     return a[n % x]
-
-print(get_fibonaccihuge(100,100000))
 
 if __name__ == '__main__':
     input = sys.stdin.read();
