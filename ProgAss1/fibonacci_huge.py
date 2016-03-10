@@ -8,14 +8,16 @@ def get_fibonaccihuge(n, m):
         return a[n]
     x = 0
     while True:
-        x = x+1
-        a.append(sum(a[-2:]))
+        x += 1
+        a.append(sum(a[-2:]) % m)
         if a[-2:] == [0,1]:
             break
         if x > n:
             break
-    del a[-2:]
-    return b[n % m]
+
+    return a[n % x]
+
+print(get_fibonaccihuge(100,100000))
 
 if __name__ == '__main__':
     input = sys.stdin.read();
