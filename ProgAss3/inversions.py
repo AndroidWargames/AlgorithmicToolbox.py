@@ -39,4 +39,4 @@ if __name__ == '__main__':
     input = sys.stdin.read()
     n, *a = list(map(int, input.split()))
     b = n * [0]
-    x = inversions(a)[0]
+    print(inversions(a)[0])
