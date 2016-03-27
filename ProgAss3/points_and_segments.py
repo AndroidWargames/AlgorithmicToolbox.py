@@ -6,30 +6,12 @@ def fast_count_segments(starts, ends, points):
     m = pair_merge_sort(starts, ends)
     starts, ends = m
     for i in range(len(points)):
-        f = first_index(starts,points[i])
-        if f != -1:
-            while f < len(starts) and points[i] >= starts[f]:
-                if points[i] < ends[f]:
-                    cnt[i] += 1
-                f += 1
+        f = 0
+        while f < len(starts) and points[i] >= starts[f]:
+            if points[i] < ends[f]:
+                cnt[i] += 1
+            f += 1
     return cnt
-
-
-def first_index(a, y):
-    l = 0
-    r = len(a) - 1
-    m = (l + r) // 2
-    while True:
-        if a[m] >= y:
-            r = m - 1
-        else:
-            l = m + 1
-        if r < 0 or l == len(a):
-            return -1
-        if r - l < 0:
-            return m
-        m = (l + r) // 2
-
     
 
 def pair_merge_sort(a, b):
