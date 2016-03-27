@@ -64,11 +64,6 @@ def pair_merger(a, b):
     return out
 
 
-print(fast_count_segments([6,4,1],[7,6,9],[-1,4,6]))
-
-exit(2)
-
-
 if __name__ == '__main__':
     input = sys.stdin.read()
     data = list(map(int, input.split()))
