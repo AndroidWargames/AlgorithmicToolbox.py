@@ -7,12 +7,41 @@ def fast_count_segments(starts, ends, points):
     starts, ends = m
     for i in range(len(points)):
         f = 0
-        while f < len(starts) and points[i] >= starts[f]:
-            if points[i] < ends[f]:
+        p = points[i]
+        s = endseeker(starts,p)
+
+        while f < s:
+            if p <= ends[f]:
                 cnt[i] += 1
             f += 1
     return cnt
-    
+
+def endseeker(a,x):
+    l = 0
+    r = len(a) - 1
+    while l < r:
+        m = (r + l) // 2
+        if a[m] < x:
+            l = m + 1
+        elif a[m] > x:
+            r = m - 1
+        else:
+            r = m
+    if r < 0:
+        return 0
+    if l >= len(a):
+        return len(a)
+    if r == l:
+        if a[r] <= x:
+            return r + 1
+        else:
+            return r
+    elif a[m] > x:
+        return m
+    else:
+        return m + 1
+
+
 
 def pair_merge_sort(a, b):
     if len(a) <= 1:
@@ -44,7 +73,6 @@ def pair_merger(a, b):
     out[1].extend(ta)
     out[1].extend(tb)
     return out
-
 
 if __name__ == '__main__':
     input = sys.stdin.read()
