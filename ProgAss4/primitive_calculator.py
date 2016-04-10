@@ -1,17 +1,22 @@
 # Uses python3
 import sys
 
+
 def optimal_sequence(n):
-    sequence = []
+    s1 = []
     while n >= 1:
-        sequence.append(n)
+        s1.append(n)
         if n % 3 == 0:
-            n = n // 3
+            n //= 3
         elif n % 2 == 0:
-            n = n // 2
+            if (n-1) % 9 == 0:
+                n -= 1
+            else:
+                n //= 2
         else:
-            n = n - 1
-    return reversed(sequence)
+            n -= 1
+    return reversed(s1)
+
 
 input = sys.stdin.read()
 n = int(input)
