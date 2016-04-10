@@ -1,4 +1,7 @@
 # Uses python3
+
+import math
+
 def evalt(a, b, op):
     if op == '+':
         return a + b
@@ -10,8 +13,37 @@ def evalt(a, b, op):
         assert False
 
 def get_maximum_value(dataset):
-    #write your code here
-    return 0
+    inp = list(dataset)
+    nums = []
+    ops = []
+    while len(inp) > 0:
+        if len(inp) % 2 == 1:
+            nums.append(int(inp[0]))
+            del inp[0]
+        else:
+            ops.append(inp[0])
+            del inp[0]
+    n = len(nums)
+    minmat = [[0 for x in range(n)] for x in range(n)]
+    maxmat = [[0 for x in range(n)] for x in range(n)]
+    for i in range(n):
+        minmat[i][i] = nums[i]
+        maxmat[i][i] = nums[i]
+    for s in range(1, n+1):
+        for i in range(n-s):
+            j = i + s
+            mx = -math.inf
+            mn = math.inf
+            for k in range(i, j):
+                a = evalt(minmat[i][k], minmat[k+1][j], ops[k])
+                b = evalt(maxmat[i][k], minmat[k+1][j], ops[k])
+                c = evalt(minmat[i][k], maxmat[k+1][j], ops[k])
+                d = evalt(maxmat[i][k], maxmat[k+1][j], ops[k])
+                mn = min(mn, a, b, c, d)
+                mx = max(mx, a, b, c, d)
+            minmat[i][j] = mn
+            maxmat[i][j] = mx
+    return maxmat[0][n-1]
 
 
 if __name__ == "__main__":
