@@ -32,8 +32,8 @@ def get_maximum_value(dataset):
     for s in range(1, n+1):
         for i in range(n-s):
             j = i + s
-            mx = -math.inf
-            mn = math.inf
+            mx = -10000000000
+            mn = 10000000000
             for k in range(i, j):
                 a = evalt(minmat[i][k], minmat[k+1][j], ops[k])
                 b = evalt(maxmat[i][k], minmat[k+1][j], ops[k])
